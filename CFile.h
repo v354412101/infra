@@ -13,8 +13,6 @@ namespace Infra {
 
         bool open(const char *path, const char *mode);
 
-        bool open(const std::string& path, const char *mode);
-
         size_t read(void *ptr, size_t size, size_t nmemb);
 
         size_t write(const void *ptr, size_t size, size_t nmemb);
@@ -25,6 +23,5 @@ namespace Infra {
 
     private:
         FILE *fp_;
-        int fd_;
     };
 }
