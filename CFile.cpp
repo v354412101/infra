@@ -1,5 +1,7 @@
 #include "CFile.h"
 
+#include <unistd.h>
+
 namespace Infra {
     CFile::CFile()
         : fp_(nullptr) {}
@@ -30,6 +32,14 @@ namespace Infra {
         fclose(fp_);
         fp_ = nullptr;
         return true;
+    }
+
+    bool CFile::is_exist(const std::string& path) {
+        if (path.empty()) {
+            return false;
+        }
+
+        return (access(path.c_str(), F_OK) == 0);
     }
 }
 

@@ -3,4 +3,7 @@ project(test CXX)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(main main.cpp CSocket.cpp CFile.cpp)
+include_directories(${PROJECT_SOURCE_DIR}/3rdparty/jsoncpp/include)
+link_libraries(${PROJECT_SOURCE_DIR}/thirdparty/jsoncpp/lib/libjsoncpp.a)
+
+add_executable(main main.cpp CSocket.cpp CFile.cpp CCcnfig.cpp)

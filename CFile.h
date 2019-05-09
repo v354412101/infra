@@ -21,6 +21,8 @@ namespace Infra {
 
         bool close();
 
+        static bool is_exist(const std::string& path);
+
     private:
         FILE *fp_;
     };
