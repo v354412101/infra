@@ -1,7 +1,6 @@
 #pragma once
 
 #include "json/json.h"
-#include "CFile.h"
 
 namespace Infra {
     class CConfig {
@@ -16,6 +15,5 @@ namespace Infra {
     private:
         Json::Value config_;
         std::string path_;
-        CFile *config_file_;
     };
 }
