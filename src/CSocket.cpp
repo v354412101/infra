@@ -42,7 +42,6 @@ namespace Infra {
     }
 
     bool CSocket::bind(int port) {
-
         struct sockaddr_in t_sockaddr;
         memset(&t_sockaddr, 0, sizeof(t_sockaddr));
         t_sockaddr.sin_family = AF_INET;

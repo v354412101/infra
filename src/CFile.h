@@ -22,6 +22,7 @@ namespace Infra {
         bool close();
 
         static bool is_exist(const std::string& path);
+        static int get_file_size(const std::string& path);
 
     private:
         FILE *fp_;

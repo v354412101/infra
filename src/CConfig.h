@@ -4,11 +4,12 @@
 #include "CFile.h"
 
 namespace Infra {
-    class CCcnfig {
+    class CConfig {
     public:
-        CCcnfig(const std::string& path);
-        ~CCcnfig();
+        CConfig(const std::string& path);
+        ~CConfig();
         bool init();
+
         Json::Value get();
         bool set(const Json::Value& config);
 
