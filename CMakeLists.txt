@@ -16,3 +16,6 @@ set(SRC_INFRA_NET
         src/Net/UDPSocket.cpp)
 
 add_library(Infra STATIC ${SRC_INFRA} ${SRC_INFRA_NET})
+
+install(TARGETS Infra Infra LIBRARY DESTINATION lib ARCHIVE DESTINATION lib)
+install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/ DESTINATION include/Infra)
