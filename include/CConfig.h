@@ -11,7 +11,6 @@ namespace Infra {
 
         Json::Value get();
         bool set(const Json::Value& config);
-
     private:
         Json::Value config_;
         std::string path_;

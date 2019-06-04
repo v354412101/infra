@@ -43,7 +43,7 @@ namespace Infra {
             Json::CharReaderBuilder rbuilder;
             JSONCPP_STRING errs;
 
-            bool parse_ret = Json::parseFromStream (rbuilder, f, &config_, &errs);
+            bool parse_ret = Json::parseFromStream(rbuilder, f, &config_, &errs);
             f.close();
 
             return parse_ret;
