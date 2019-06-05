@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(Infra CXX)
+project(test CXX)
 
 set(CMAKE_CXX_STANDARD 11)
 
@@ -15,7 +15,12 @@ set(SRC_INFRA_NET
         src/Net/TCPSocket.cpp
         src/Net/UDPSocket.cpp)
 
-add_library(Infra STATIC ${SRC_INFRA} ${SRC_INFRA_NET})
+#add_library(Infra STATIC ${SRC_INFRA} ${SRC_INFRA_NET})
 
-install(TARGETS Infra Infra LIBRARY DESTINATION lib ARCHIVE DESTINATION lib)
-install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/ DESTINATION include/Infra)
+add_executable(Infra test/main.cpp
+        ${SRC_INFRA}
+        ${SRC_INFRA_NET}
+        )
+
+#install(TARGETS Infra Infra LIBRARY DESTINATION lib ARCHIVE DESTINATION lib)
+#install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/ DESTINATION include/Infra)

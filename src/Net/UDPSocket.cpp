@@ -17,6 +17,17 @@ namespace Net {
         return socket_fd_ = ::socket(AF_INET, SOCK_DGRAM, 0);
     }
 
+    int UDPSocket::connect(const char *ip_addr, int port) const {
+        struct sockaddr_in t_sockaddr;
+        std::memset(&t_sockaddr, 0, sizeof(t_sockaddr));
+
+        t_sockaddr.sin_family = AF_INET;
+        t_sockaddr.sin_port = htons(port);
+        inet_pton(AF_INET, ip_addr, &t_sockaddr.sin_addr);
+
+        return ::connect(socket_fd_, (struct sockaddr*)&t_sockaddr, sizeof(struct sockaddr));
+    }
+
     int UDPSocket::bind(unsigned int port) const {
         struct sockaddr_in t_sockaddr;
         std::memset(&t_sockaddr, 0, sizeof(t_sockaddr));
@@ -28,7 +39,11 @@ namespace Net {
         return ::bind(socket_fd_, (struct sockaddr *)&t_sockaddr, sizeof(t_sockaddr));
     }
 
-    ssize_t UDPSocket::sendto(const void *buf, size_t len, const std::string& ip_addr, unsigned int port) const {
+    ssize_t UDPSocket::sendto(const void *buf, size_t len, const std::string&& ip_addr, unsigned int port) const {
+        if (ip_addr.empty()) {
+            return ::sendto(socket_fd_, buf, len, 0, (struct sockaddr *) nullptr, 0);
+        }
+
         struct sockaddr_in t_sockaddr;
         std::memset(&t_sockaddr, 0, sizeof(t_sockaddr));
 
@@ -39,7 +54,7 @@ namespace Net {
         return ::sendto(socket_fd_, buf, len, 0, (struct sockaddr *) &t_sockaddr, sizeof(t_sockaddr));
     }
 
-    ssize_t UDPSocket::recvfrom(void *buf, size_t nbyte, std::string&& ip_addr, unsigned int&& port) const {
+    ssize_t UDPSocket::recvfrom(void *buf, size_t nbyte, std::string&& ip_addr, unsigned int port) const {
         struct sockaddr_in t_sockaddr;
         std::memset(&t_sockaddr, 0, sizeof(t_sockaddr));
 
