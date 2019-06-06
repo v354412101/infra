@@ -13,10 +13,6 @@ namespace Net {
         ~TCPSocket();
 
         int open() override;
-        int close() override;
-
-        int connect(const char *ip_addr, int port) const;
-        int bind(int port) const;
         int listen(int backlog) const;
         int accept() const;
         ssize_t send(const void *buf, size_t len) const;
