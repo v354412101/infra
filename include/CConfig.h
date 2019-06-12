@@ -9,7 +9,7 @@ namespace Infra {
         ~CConfig();
         bool init();
 
-        Json::Value get();
+        Json::Value get() const;
         bool set(const Json::Value& config);
     private:
         Json::Value config_;

@@ -1,36 +1,9 @@
 #include <iostream>
-#include <cstring>
 
-#include "Net/UDPSocket.h"
+#include "gtest/gtest.h"
+#include "json/json.h"
 
-//int main(int argc, char *argv[]) {
-//
-//    auto server = new Infra::Net::UDPSocket();
-//    server->open();
-//
-//    server->bind(49152);
-//
-//    unsigned char recv_buffer[65535] = {0};
-//    std::memset(recv_buffer, 0, 65535);
-//
-//    server->recvfrom(recv_buffer, 65535);
-//
-//    std::cout << recv_buffer << std::endl;
-//
-//    return 0;
-//}
-
-
-int main(int argc, char *argv[]) {
-
-    auto client = new Infra::Net::UDPSocket();
-    client->open();
-
-    client->connect("10.10.19.31", 49152);
-
-    client->sendto("shello", 6);
-
-    return 0;
+int main(int argc,char *argv[]) {
+    testing::InitGoogleTest(&argc,argv);
+    return RUN_ALL_TESTS();
 }
-
-
