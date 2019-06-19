@@ -15,6 +15,7 @@ include_directories(${PROJECT_SOURCE_DIR}/include)
 add_executable(unit_tests
         main.cpp
         CConfig_test.cpp
+        CFile_test.cpp
         )
 
 target_link_libraries(unit_tests

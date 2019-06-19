@@ -11,7 +11,6 @@ namespace Net {
     public:
         TCPSocket();
         ~TCPSocket();
-
         int open() override;
         int listen(int backlog) const;
         int accept() const;

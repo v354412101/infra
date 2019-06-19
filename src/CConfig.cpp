@@ -3,12 +3,29 @@
 #include <fstream>
 
 namespace Infra {
-    CConfig::CConfig(const std::string& path)
-        : config_(Json::Value::null),
-          path_(path) {
+    CConfig::CConfig()
+        : config_(Json::Value::null) {
     }
 
     CConfig::~CConfig() {
+    }
+
+    bool CConfig::init(const std::string& path) {
+        path_ = path;
+
+        std::fstream f;
+        f.open(path_, std::ios::in);
+        if (!f.is_open()) {
+            return false;
+        }
+
+        Json::CharReaderBuilder rbuilder;
+        JSONCPP_STRING errs;
+
+        bool parse_ret = Json::parseFromStream(rbuilder, f, &config_, &errs);
+        f.close();
+
+        return parse_ret;
     }
 
     Json::Value CConfig::get() const {
@@ -27,21 +44,5 @@ namespace Infra {
         config_ = config;
 
         return true;
-    }
-
-    bool CConfig::init() {
-        std::fstream f;
-        f.open(path_, std::ios::in);
-        if (!f.is_open()) {
-            return false;
-        }
-
-        Json::CharReaderBuilder rbuilder;
-        JSONCPP_STRING errs;
-
-        bool parse_ret = Json::parseFromStream(rbuilder, f, &config_, &errs);
-        f.close();
-
-        return parse_ret;
     }
 }

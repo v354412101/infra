@@ -5,10 +5,9 @@
 namespace Infra {
     class CConfig {
     public:
-        CConfig(const std::string& path);
+        CConfig();
         ~CConfig();
-        bool init();
-
+        bool init(const std::string& path);
         Json::Value get() const;
         bool set(const Json::Value& config);
     private:
